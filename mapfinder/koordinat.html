@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head><title>หาพิกัด</title></head>
+<body>
+<h3>คลิกบนแผนที่เพื่อดูพิกัด</h3>
+<div id="log" style="font-family:monospace; margin-top:10px"></div>
+<br>
+<img id="map" src="map.png" style="max-width:100%; cursor:crosshair">
+<script>
+  const img = document.getElementById('map');
+  const log = document.getElementById('log');
+  let count = 1;
+  img.addEventListener('click', function(e) {
+    const rect = img.getBoundingClientRect();
+    const scaleX = img.naturalWidth / rect.width;
+    const scaleY = img.naturalHeight / rect.height;
+    const x = Math.round((e.clientX - rect.left) * scaleX);
+    const y = Math.round((e.clientY - rect.top) * scaleY);
+    log.innerHTML = `จุดที่ ${count++}: x=${x}, y=${y}<br>` + log.innerHTML;
+  });
+</script>
+</body>
+</html>

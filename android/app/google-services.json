@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "730099336727",
+    "project_id": "zoopath",
+    "storage_bucket": "zoopath.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:730099336727:android:92c67c45e6424d9c8a3e52",
+        "android_client_info": {
+          "package_name": "com.example.project_zoo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLI_XL_AZuEeVVcsXdZ2nYluR7CgoSpy0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
