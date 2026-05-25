@@ -47,13 +47,13 @@ const List<Map<String, dynamic>> locations = [
   {'id': 4,  'name': 'กรงนกใหญ่',           'emoji': '🦜', 'hasToilet': false, 'hasParking': true,  'waypoint': 12, 'lat': 16.844580, 'lng': 102.892960},
   {'id': 5,  'name': 'สถานีลิง',            'emoji': '🐒', 'hasToilet': true,  'hasParking': true,  'waypoint': 18, 'lat': 16.842620, 'lng': 102.892117},
   {'id': 6,  'name': 'สถานีคาปิบาร่า',      'emoji': '🐹', 'hasToilet': true,  'hasParking': true,  'waypoint': 30, 'lat': 16.843490, 'lng': 102.891584},
-  {'id': 7,  'name': 'สถานีเสือ',           'emoji': '🐯', 'hasToilet': true,  'hasParking': true,  'waypoint': 38, 'lat': 16.843329, 'lng': 102.893196},
-  {'id': 8,  'name': 'สถานีฮิปโปเล็ก',     'emoji': '🦛', 'hasToilet': true,  'hasParking': true,  'waypoint': 35, 'lat': 16.842769, 'lng': 102.894388},
-  {'id': 9,  'name': 'สถานีเพนกวิน/ฮิปโป', 'emoji': '🐧', 'hasToilet': true,  'hasParking': true,  'waypoint': 51, 'lat': 16.840716, 'lng': 102.894128},
-  {'id': 10, 'name': 'สถานีแร้ง',           'emoji': '🦅', 'hasToilet': false, 'hasParking': true,  'waypoint': 57, 'lat': 16.840324, 'lng': 102.896682},
-  {'id': 11, 'name': 'สถานีเลียงผา',        'emoji': '🐐', 'hasToilet': false, 'hasParking': true,  'waypoint': 59, 'lat': 16.840675, 'lng': 102.897894},
-  {'id': 12, 'name': 'สถานีจิงโจ้แดง',      'emoji': '🦘', 'hasToilet': true,  'hasParking': false, 'waypoint': 61, 'lat': 16.841918, 'lng': 102.895329},
-  {'id': 13, 'name': 'สถานีกวาง',           'emoji': '🦌', 'hasToilet': true,  'hasParking': true,  'waypoint': 62, 'lat': 16.842205, 'lng': 102.896681},
+  {'id': 7,  'name': 'สถานีฮิปโปเล็ก',     'emoji': '🦛', 'hasToilet': true,  'hasParking': true,  'waypoint': 35, 'lat': 16.842769, 'lng': 102.894388},
+  {'id': 8,  'name': 'สถานีเสือ',           'emoji': '🐯', 'hasToilet': true,  'hasParking': true,  'waypoint': 38, 'lat': 16.843329, 'lng': 102.893196},
+  {'id': 9,  'name': 'สถานีเพนกวิน/ฮิปโป', 'emoji': '🐧', 'hasToilet': true,  'hasParking': true,  'waypoint': 48, 'lat': 16.840716, 'lng': 102.894128},
+  {'id': 10, 'name': 'สถานีแร้ง',           'emoji': '🦅', 'hasToilet': false, 'hasParking': false, 'waypoint': 54, 'lat': 16.840324, 'lng': 102.896682},
+  {'id': 11, 'name': 'สถานีเลียงผา',        'emoji': '🐐', 'hasToilet': false, 'hasParking': true,  'waypoint': 56, 'lat': 16.840675, 'lng': 102.897894},
+  {'id': 12, 'name': 'สถานีจิงโจ้แดง',      'emoji': '🦘', 'hasToilet': true,  'hasParking': true,  'waypoint': 58, 'lat': 16.841918, 'lng': 102.895329},
+  {'id': 13, 'name': 'สถานีกวาง',           'emoji': '🦌', 'hasToilet': true,  'hasParking': true,  'waypoint': 59, 'lat': 16.842205, 'lng': 102.896681},
 ];
 
 // ข้อมูลเริ่มต้น (ใช้ seed ครั้งแรก)
@@ -103,27 +103,65 @@ const List<String> visitingTips = [
 ];
 
 const List<Offset> waypoints = [
-  Offset(3626, 820),  Offset(3522, 1049), Offset(3107, 820),
-  Offset(2988, 451),  Offset(2778, 735),  Offset(2576, 791),
-  Offset(2384, 876),  Offset(2275, 608),  Offset(2124, 892),
-  Offset(1930, 847),  Offset(1757, 738),  Offset(1396, 530),
-  Offset(1053, 711),  Offset(845,  818),  Offset(577,  897),
-  Offset(396,  1028), Offset(439,  1224), Offset(255,  1328),
-  Offset(529,  1477), Offset(409,  1658), Offset(247,  1878),
-  Offset(253,  2054), Offset(404,  2144), Offset(550,  2075),
-  Offset(649,  1830), Offset(723,  1543), Offset(893,  1344),
-  Offset(1018, 1339), Offset(1186, 1405), Offset(1146, 1705),
-  Offset(1292, 1490), Offset(1435, 1565), Offset(1637, 1610),
-  Offset(2180, 1716), Offset(2772, 1652), Offset(2414, 1934),
-  Offset(2297, 2078), Offset(1850, 2043), Offset(1988, 2237),
-  Offset(1861, 2333), Offset(1792, 2466), Offset(1693, 2625),
-  Offset(1539, 2681), Offset(1372, 2758), Offset(1183, 2912),
-  Offset(1233, 2968), Offset(3137, 2984), Offset(3155, 2835),
-  Offset(2897, 2652), Offset(2770, 2394), Offset(2491, 2253),
-  Offset(2889, 2181), Offset(3150, 2226), Offset(3371, 2261),
-  Offset(3623, 2288), Offset(3820, 2240), Offset(4139, 2109),
-  Offset(4421, 1977), Offset(4670, 2000), Offset(4410, 1655),
-  Offset(4110, 1652), Offset(4615, 1336),
+  Offset(3631, 812),  // 1
+  Offset(3519, 1057), // 2
+  Offset(3097, 836),  // 3
+  Offset(2975, 451),  // 4
+  Offset(2767, 735),  // 5
+  Offset(2573, 788),  // 6
+  Offset(2371, 889),  // 7
+  Offset(2275, 631),  // 8
+  Offset(2119, 908),  // 9
+  Offset(1925, 849),  // 10
+  Offset(1760, 754),  // 11
+  Offset(1398, 538),  // 12
+  Offset(1053, 709),  // 13
+  Offset(829,  831),  // 14
+  Offset(587,  911),  // 15
+  Offset(409,  1028), // 16
+  Offset(439,  1248), // 17
+  Offset(266,  1339), // 18
+  Offset(534,  1471), // 19
+  Offset(409,  1671), // 20
+  Offset(245,  1886), // 21
+  Offset(250,  2080), // 22
+  Offset(391,  2139), // 23
+  Offset(553,  2091), // 24
+  Offset(649,  1814), // 25
+  Offset(731,  1565), // 26
+  Offset(912,  1357), // 27
+  Offset(1034, 1357), // 28
+  Offset(1194, 1421), // 29
+  Offset(1140, 1700), // 30
+  Offset(1284, 1495), // 31
+  Offset(1441, 1562), // 32
+  Offset(1669, 1628), // 33
+  Offset(2193, 1713), // 34
+  Offset(2770, 1647), // 35
+  Offset(2424, 1921), // 36
+  Offset(2305, 2064), // 37
+  Offset(1853, 2048), // 38
+  Offset(1975, 2242), // 39
+  Offset(1869, 2327), // 40
+  Offset(1802, 2479), // 41
+  Offset(1677, 2620), // 42
+  Offset(1544, 2692), // 43
+  Offset(1348, 2771), // 44
+  Offset(2990, 2755), // 45
+  Offset(2895, 2662), // 46
+  Offset(2772, 2418), // 47
+  Offset(2485, 2245), // 48
+  Offset(2892, 2181), // 49
+  Offset(3147, 2229), // 50
+  Offset(3357, 2274), // 51
+  Offset(3628, 2288), // 52
+  Offset(3825, 2240), // 53
+  Offset(4147, 2099), // 54
+  Offset(4410, 1992), // 55
+  Offset(4686, 1995), // 56
+  Offset(4437, 1666), // 57
+  Offset(4118, 1642), // 58
+  Offset(4596, 1333), // 59
 ];
 
 const List<List<int>> edges = [
@@ -132,12 +170,14 @@ const List<List<int>> edges = [
   [14, 15], [15, 16], [16, 17], [17, 18], [17, 19],
   [19, 20], [20, 21], [21, 22], [22, 23], [23, 24],
   [24, 25], [25, 26], [26, 27], [27, 28], [28, 29],
-  [29, 30], [29, 31], [31, 32], [32, 33], [33, 34], [34, 35], [34, 36],
+  [29, 30], [29, 31], [31, 32], [32, 33], [33, 34], [34, 35],[34, 36],
   [35, 36], [36, 37], [37, 38], [37, 39],
   [39, 40], [40, 41], [41, 42], [42, 43], [43, 44],
-  [44, 45], [45, 46], [46, 47], [47, 48], [48, 49], [49, 50],
-  [50, 51], [50, 52], [52, 53], [53, 54], [54, 55], [55, 56], [56, 57],
-  [57, 58], [58, 59], [58, 60], [60, 61], [60, 62],
+  [44, 45], [45, 46], [46, 47], [47, 48],[47,49],
+  [49, 50], [50, 51], [51, 52], [52, 53], [53, 54],
+  [54, 55], [55, 57],
+  [55, 56],
+  [57, 58], [57, 59],
 ];
 
 List<int> findPath(int from, int to) {
