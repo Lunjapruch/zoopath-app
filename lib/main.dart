@@ -447,7 +447,7 @@ class _WelcomePageState extends State<WelcomePage> {
           Positioned(
             top: 16, right: 20,
             child: Column(children: [
-              _StatBadge(emoji: '🦁', label: 'สัตว์หายาก', value: '50+'),
+              _StatBadge(emoji: '🦁', label: 'สัตว์หายาก', value: '36+'),
               const SizedBox(height: 8),
               _StatBadge(emoji: '🌿', label: 'พื้นที่สีเขียว', value: '2,986 ไร่'),
               ]),
