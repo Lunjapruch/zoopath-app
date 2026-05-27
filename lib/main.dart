@@ -113,19 +113,148 @@ Map<int, Offset> buildWaypointLatLng() {
 }
 
 const List<Map<String, dynamic>> locations = [
-  {'id': 1,  'name': 'Welcome Center',      'emoji': '👋', 'hasToilet': false, 'hasParking': false, 'waypoint': 1,  'lat': 16.845921, 'lng': 102.895570},
-  {'id': 2,  'name': 'โชว์แมวน้ำ',          'emoji': '🦭', 'hasToilet': false, 'hasParking': false, 'waypoint': 4,  'lat': 16.845856, 'lng': 102.894745},
-  {'id': 3,  'name': 'สถานีหมี',            'emoji': '🐻', 'hasToilet': false, 'hasParking': true,  'waypoint': 8,  'lat': 16.845275, 'lng': 102.893380},
-  {'id': 4,  'name': 'กรงนกใหญ่',           'emoji': '🦜', 'hasToilet': false, 'hasParking': true,  'waypoint': 12, 'lat': 16.844580, 'lng': 102.892960},
-  {'id': 5,  'name': 'สถานีลิง',            'emoji': '🐒', 'hasToilet': true,  'hasParking': true,  'waypoint': 18, 'lat': 16.842620, 'lng': 102.892117},
-  {'id': 6,  'name': 'สถานีคาปิบาร่า',      'emoji': '🐹', 'hasToilet': true,  'hasParking': true,  'waypoint': 30, 'lat': 16.843490, 'lng': 102.891584},
-  {'id': 7,  'name': 'สถานีฮิปโปเล็ก',     'emoji': '🦛', 'hasToilet': true,  'hasParking': true,  'waypoint': 35, 'lat': 16.842769, 'lng': 102.894388},
-  {'id': 8,  'name': 'สถานีเสือ',           'emoji': '🐯', 'hasToilet': true,  'hasParking': true,  'waypoint': 38, 'lat': 16.843329, 'lng': 102.893196},
-  {'id': 9,  'name': 'สถานีเพนกวิน/ฮิปโป', 'emoji': '🐧', 'hasToilet': true,  'hasParking': true,  'waypoint': 48, 'lat': 16.840716, 'lng': 102.894128},
-  {'id': 10, 'name': 'สถานีแร้ง',           'emoji': '🦅', 'hasToilet': false, 'hasParking': false, 'waypoint': 54, 'lat': 16.840324, 'lng': 102.896682},
-  {'id': 11, 'name': 'สถานีเลียงผา',        'emoji': '🐐', 'hasToilet': false, 'hasParking': true,  'waypoint': 56, 'lat': 16.840675, 'lng': 102.897894},
-  {'id': 12, 'name': 'สถานีจิงโจ้แดง',      'emoji': '🦘', 'hasToilet': true,  'hasParking': true,  'waypoint': 58, 'lat': 16.841918, 'lng': 102.895329},
-  {'id': 13, 'name': 'สถานีกวาง',           'emoji': '🦌', 'hasToilet': true,  'hasParking': true,  'waypoint': 59, 'lat': 16.842205, 'lng': 102.896681},
+  {
+    'id': 1,
+    'name': 'Welcome Center',
+    'emoji': '👋',
+    'hasToilet': false,
+    'hasParking': false,
+    'waypoint': 1,
+    'lat': 16.845921,
+    'lng': 102.895570
+  },
+
+  {
+    'id': 2,
+    'name': 'โชว์แมวน้ำ',
+    'emoji': '🦭',
+    'hasToilet': false,
+    'hasParking': false,
+    'waypoint': 4,
+    'lat': 16.845856,
+    'lng': 102.894745
+  },
+
+  {
+    'id': 3,
+    'name': 'จุดจอดหมี',
+    'emoji': '🐻',
+    'hasToilet': false,
+    'hasParking': true,
+    'waypoint': 8,
+    'lat': 16.845275,
+    'lng': 102.893380
+  },
+
+  {
+    'id': 4,
+    'name': 'กรงนก',
+    'emoji': '🦜',
+    'hasToilet': false,
+    'hasParking': false,
+    'waypoint': 12,
+    'lat': 16.844580,
+    'lng': 102.892960
+  },
+
+  {
+    'id': 5,
+    'name': 'จุดจอดลิง',
+    'emoji': '🐒',
+    'hasToilet': true,
+    'hasParking': true,
+    'waypoint': 18,
+    'lat': 16.842620,
+    'lng': 102.892117
+  },
+
+  {
+    'id': 6,
+    'name': 'จุดจอดคาปิ',
+    'emoji': '🐹',
+    'hasToilet': true,
+    'hasParking': true,
+    'waypoint': 30,
+    'lat': 16.843490,
+    'lng': 102.891584
+  },
+
+  {
+    'id': 7,
+    'name': 'จุดจอดฮิปโปเล็ก',
+    'emoji': '🦛',
+    'hasToilet': true,
+    'hasParking': true,
+    'waypoint': 35,
+    'lat': 16.842769,
+    'lng': 102.894388
+  },
+
+  {
+    'id': 8,
+    'name': 'จุดจอดเสือ',
+    'emoji': '🐯',
+    'hasToilet': true,
+    'hasParking': true,
+    'waypoint': 38,
+    'lat': 16.843329,
+    'lng': 102.893196
+  },
+
+  {
+    'id': 9,
+    'name': 'ฮิปโปใหญ่ + เพนกวิน',
+    'emoji': '🐧',
+    'hasToilet': true,
+    'hasParking': true,
+    'waypoint': 44,
+    'lat': 16.840716,
+    'lng': 102.894128
+  },
+
+  {
+    'id': 10,
+    'name': 'กรงแร้ง',
+    'emoji': '🦅',
+    'hasToilet': false,
+    'hasParking': false,
+    'waypoint': 55,
+    'lat': 16.840324,
+    'lng': 102.896682
+  },
+
+  {
+    'id': 11,
+    'name': 'จุดจอดเลียงผา',
+    'emoji': '🐐',
+    'hasToilet': false,
+    'hasParking': true,
+    'waypoint': 57,
+    'lat': 16.840675,
+    'lng': 102.897894
+  },
+
+  {
+    'id': 12,
+    'name': 'จิงโจ้แดง',
+    'emoji': '🦘',
+    'hasToilet': true,
+    'hasParking': true,
+    'waypoint': 58,
+    'lat': 16.841918,
+    'lng': 102.895329
+  },
+
+  {
+    'id': 13,
+    'name': 'จุดจอดกวาง',
+    'emoji': '🦌',
+    'hasToilet': true,
+    'hasParking': true,
+    'waypoint': 59,
+    'lat': 16.842205,
+    'lng': 102.896681
+  },
 ];
 
 // ข้อมูลเริ่มต้น (ใช้ seed ครั้งแรก)
@@ -215,48 +344,99 @@ const List<Offset> waypoints = [
   Offset(1853, 2048), // 38
   Offset(1975, 2242), // 39
   Offset(1869, 2327), // 40
-  Offset(1802, 2479), // 41
-  Offset(1677, 2620), // 42
-  Offset(1544, 2692), // 43
-  Offset(1348, 2771), // 44
-  Offset(2990, 2755), // 45
-  Offset(2895, 2662), // 46
-  Offset(2772, 2418), // 47
-  Offset(2485, 2245), // 48
-  Offset(2892, 2181), // 49
-  Offset(3147, 2229), // 50
+  Offset(1948,2423), // 41
+  Offset(2108,2444), // 42
+  Offset(2291, 2460), // 43
+  Offset(2464, 2766), // 44
+  Offset(2448, 2503), // 45
+  Offset(2464, 2766), // 44
+  Offset(2608, 2508), // 46
+  Offset(2770, 2490), // 47
+  Offset(2767, 2335), // 48
+  Offset(2889, 2176), // 49
+  Offset(3153, 2234), // 50
   Offset(3357, 2274), // 51
-  Offset(3628, 2288), // 52
-  Offset(3825, 2240), // 53
-  Offset(4147, 2099), // 54
-  Offset(4410, 1992), // 55
-  Offset(4686, 1995), // 56
-  Offset(4437, 1666), // 57
-  Offset(4118, 1642), // 58
-  Offset(4596, 1333), // 59
+  Offset(3432, 2024), // 52
+  Offset(3615, 2272), // 53
+  Offset(3822, 2248), // 54
+  Offset(4152, 2091), // 55
+  Offset(4423, 2003), // 56
+  Offset(4678, 2000), // 57
+  Offset(4421, 1660), // 58
+  Offset(4609, 1333), // 59
 ];
 
 const List<List<int>> edges = [
-  [1, 2], [2, 3], [3, 4], [3, 5], [5, 6], [6, 7],
-  [7, 8], [7, 9], [9, 10], [10, 11], [11, 12], [12, 13], [13, 14],
-  [14, 15], [15, 16], [16, 17], [17, 18], [17, 19],
-  [19, 20], [20, 21], [21, 22], [22, 23], [23, 24],
-  [24, 25], [25, 26], [26, 27], [27, 28], [28, 29],
-  [29, 30], [29, 31], [31, 32], [32, 33], [33, 34], [34, 35],[34, 36],
-  [35, 36], [36, 37], [37, 38], [37, 39],
-  [39, 40], [40, 41], [41, 42], [42, 43], [43, 44],
-  [44, 45], [45, 46], [46, 47], [47, 48],[47,49],
-  [49, 50], [50, 51], [51, 52], [52, 53], [53, 54],
-  [54, 55], [55, 57],
+  [1, 2],
+  [2, 3],
+  [3, 4],
+  [3, 5],
+  [5, 6],
+  [6, 7],
+  [7, 8],
+  [7, 9],
+  [9, 10],
+  [10, 11],
+  [11, 12],
+  [12, 13],
+  [13, 14],
+  [14, 15],
+  [15, 16],
+  [16, 17],
+  [17, 18],
+  [17, 19],
+  [19, 20],
+  [20, 21],
+  [21, 22],
+  [22, 23],
+  [23, 24],
+  [24, 25],
+  [25, 26],
+  [26, 27],
+  [27, 28],
+  [28, 29],
+  [29, 30],
+  [29, 31],
+  [31, 32],
+  [32, 33],
+  [33, 34],
+  [34, 35],
+  [34, 36],
+  [35, 36],
+  [36, 37],
+  [37, 38],
+  [37, 39],
+  [39, 40],
+  [40, 41],
+  [41, 42],
+  [42, 43],
+  [43, 44],
+  [43, 45],
+  [44, 46],
+  [45, 46],
+  [46, 47],
+  [47, 48],
+  [47, 49],
+  [49, 50],
+  [50, 51],
+  [51, 52],
+  [52, 53],
+  [53, 54],
+  [54, 55],
+
+  // โซนท้าย
   [55, 56],
-  [57, 58], [57, 59],
+  [56,58],
+  [56, 57],
+  [57, 58],
+  [58, 59],
+  [58,2],
 ];
 
 List<int> findPath(int from, int to) {
   final graph = <int, List<int>>{};
   for (final e in edges) {
     graph.putIfAbsent(e[0], () => []).add(e[1]);
-    graph.putIfAbsent(e[1], () => []).add(e[0]);
   }
   final queue = <List<int>>[[from]];
   final visited = <int>{from};
