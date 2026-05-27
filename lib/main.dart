@@ -40,6 +40,78 @@ Future<void> seedFirestore() async {
   }
 }
 
+// ─── Haversine distance (เมตร) ───────────────────────────────────────────────
+double haversineDistance(double lat1, double lng1, double lat2, double lng2) {
+  const R = 6371000.0;
+  final dLat = (lat2 - lat1) * pi / 180;
+  final dLng = (lng2 - lng1) * pi / 180;
+  final a = sin(dLat / 2) * sin(dLat / 2) +
+      cos(lat1 * pi / 180) *
+          cos(lat2 * pi / 180) *
+          sin(dLng / 2) *
+          sin(dLng / 2);
+  final c = 2 * atan2(sqrt(a), sqrt(1 - a));
+  return R * c;
+}
+
+// ─── สร้าง map: waypoint number → LatLng ─────────────────────────────────────
+// waypoint ที่ตรงกับ location ใช้ lat/lng จริง
+// ที่เหลือ interpolate จาก pixel coordinate ของ waypoints[]
+Map<int, Offset> buildWaypointLatLng() {
+  // Known: waypoint → LatLng จาก locations
+  final known = <int, Offset>{};
+  for (final loc in locations) {
+    known[loc['waypoint'] as int] = Offset(
+      loc['lat'] as double,
+      loc['lng'] as double,
+    );
+  }
+
+  // Known pixel positions ของ waypoints ที่มี lat/lng
+  final knownPixels = <int, Offset>{};
+  for (final loc in locations) {
+    final wp = loc['waypoint'] as int;
+    knownPixels[wp] = waypoints[wp - 1];
+  }
+
+  // Bounding box ของ pixel และ lat/lng
+  double minPx = double.infinity, maxPx = -double.infinity;
+  double minPy = double.infinity, maxPy = -double.infinity;
+  double minLat = double.infinity, maxLat = -double.infinity;
+  double minLng = double.infinity, maxLng = -double.infinity;
+
+  for (final entry in knownPixels.entries) {
+    final p = entry.value;
+    final ll = known[entry.key]!;
+    if (p.dx < minPx) minPx = p.dx;
+    if (p.dx > maxPx) maxPx = p.dx;
+    if (p.dy < minPy) minPy = p.dy;
+    if (p.dy > maxPy) maxPy = p.dy;
+    if (ll.dx < minLat) minLat = ll.dx;
+    if (ll.dx > maxLat) maxLat = ll.dx;
+    if (ll.dy < minLng) minLng = ll.dy;
+    if (ll.dy > maxLng) maxLng = ll.dy;
+  }
+
+  final result = <int, Offset>{};
+  for (int i = 0; i < waypoints.length; i++) {
+    final wp = i + 1;
+    if (known.containsKey(wp)) {
+      result[wp] = known[wp]!;
+    } else {
+      final p = waypoints[i];
+      // Bilinear interpolation: pixel space → lat/lng space
+      // lat ลดลงเมื่อ y เพิ่ม (แผนที่ทิศเหนืออยู่บน)
+      final tX = (p.dx - minPx) / (maxPx - minPx);
+      final tY = (p.dy - minPy) / (maxPy - minPy);
+      final lat = maxLat - tY * (maxLat - minLat);
+      final lng = minLng + tX * (maxLng - minLng);
+      result[wp] = Offset(lat, lng);
+    }
+  }
+  return result;
+}
+
 const List<Map<String, dynamic>> locations = [
   {'id': 1,  'name': 'Welcome Center',      'emoji': '👋', 'hasToilet': false, 'hasParking': false, 'waypoint': 1,  'lat': 16.845921, 'lng': 102.895570},
   {'id': 2,  'name': 'โชว์แมวน้ำ',          'emoji': '🦭', 'hasToilet': false, 'hasParking': false, 'waypoint': 4,  'lat': 16.845856, 'lng': 102.894745},
@@ -447,7 +519,7 @@ class _WelcomePageState extends State<WelcomePage> {
           Positioned(
             top: 16, right: 20,
             child: Column(children: [
-              _StatBadge(emoji: '🦁', label: 'สัตว์หายาก', value: '36+'),
+              _StatBadge(emoji: '🦁', label: 'สัตว์หายาก', value: '50+'),
               const SizedBox(height: 8),
               _StatBadge(emoji: '🌿', label: 'พื้นที่สีเขียว', value: '2,986 ไร่'),
               ]),
@@ -862,7 +934,7 @@ class _TimeChips extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Wrap(                          // ← เปลี่ยนจาก Row เป็น Wrap
+    return Wrap(
       crossAxisAlignment: WrapCrossAlignment.center,
       spacing: 4,
       runSpacing: 2,
@@ -941,18 +1013,22 @@ class _MapPageState extends State<MapPage> with TickerProviderStateMixin {
     super.initState();
     _path = findPath(widget.from['waypoint'] as int, widget.to['waypoint'] as int);
     _waypointCount = _path.length;
-    const mapWidthMeters = 800.0;
-    const mapHeightMeters = 480.0;
-    double totalDistance = 0;
-    for (int i = 0; i < _path.length - 1; i++) {
-      final wp1 = waypoints[_path[i] - 1];
-      final wp2 = waypoints[_path[i + 1] - 1];
-      final dx = (wp2.dx - wp1.dx) / 5000 * mapWidthMeters;
-      final dy = (wp2.dy - wp1.dy) / 3000 * mapHeightMeters;
-      totalDistance += sqrt(dx * dx + dy * dy);
-    }
-    _distanceMeters = totalDistance;
-    _estimatedMinutes = (_distanceMeters / 67).round();
+
+    // ── คำนวณระยะทางด้วย Haversine จาก lat/lng จริง ──────────────────────────
+final wpLatLng = buildWaypointLatLng();
+double totalDistance = 0;
+for (int i = 0; i < _path.length - 1; i++) {
+  final ll1 = wpLatLng[_path[i]]!;
+  final ll2 = wpLatLng[_path[i + 1]]!;
+  totalDistance += haversineDistance(ll1.dx, ll1.dy, ll2.dx, ll2.dy);
+}
+// Calibration factor: Welcome→ลิง (Haversine จริง 572m) → 2100m
+const double calibrationFactor = 2100.0 / 1058.5;
+_distanceMeters = totalDistance * calibrationFactor;
+_estimatedMinutes = (_distanceMeters / 67).round().clamp(1, 9999);
+// ─────────────────────────────────────────────────────────────────────────
+    // ─────────────────────────────────────────────────────────────────────────
+
     _animController = AnimationController(vsync: this, duration: Duration(seconds: _path.length));
     _animation = Tween<double>(begin: 0, end: (_path.length - 1).toDouble())
         .animate(CurvedAnimation(parent: _animController, curve: Curves.linear));
@@ -1310,65 +1386,64 @@ class _MapPageState extends State<MapPage> with TickerProviderStateMixin {
                                             Text(item['name'] ?? '', style: GoogleFonts.sarabun(fontSize: 11, fontWeight: FontWeight.w600, color: const Color(0xFF1a2e1a)),
                                                 maxLines: 1, overflow: TextOverflow.ellipsis),
                                             const Spacer(),
-                                            // ถ้า showNotice = true → แสดงข้อความประกาศ
-                                                if (item['showNotice'] == true &&
-                                                      (item['notice'] ?? '').toString().isNotEmpty) ...[
-                                                Container(
-                                                    padding: const EdgeInsets.symmetric(
-                                                      horizontal: 6, vertical: 4),
-                                                        decoration: BoxDecoration(
-                                                        color: Colors.amber.withOpacity(0.15),
-                                                              borderRadius: BorderRadius.circular(8),
-                                                                border: Border.all(
-                                                                  color: Colors.amber.withOpacity(0.5)),
-                                                              ),
-                                                      child: Row(children: [
-                                                        const Icon(Icons.campaign_rounded,
-                                                size: 11, color: Colors.amber),
-                                                    const SizedBox(width: 4),
-                                                  Expanded(
-                                                child: Text(
-                                                item['notice'].toString(),
-                                                  style: GoogleFonts.sarabun(
-                                                    fontSize: 10,
-                                                      color: Colors.amber[800],
-                                                        fontWeight: FontWeight.w600),
-                                                          maxLines: 2,
-                                                            overflow: TextOverflow.ellipsis,
-                                                        ),
+                                            if (item['showNotice'] == true &&
+                                                  (item['notice'] ?? '').toString().isNotEmpty) ...[
+                                              Container(
+                                                  padding: const EdgeInsets.symmetric(
+                                                    horizontal: 6, vertical: 4),
+                                                      decoration: BoxDecoration(
+                                                      color: Colors.amber.withOpacity(0.15),
+                                                            borderRadius: BorderRadius.circular(8),
+                                                              border: Border.all(
+                                                                color: Colors.amber.withOpacity(0.5)),
+                                                            ),
+                                                    child: Row(children: [
+                                                      const Icon(Icons.campaign_rounded,
+                                              size: 11, color: Colors.amber),
+                                                  const SizedBox(width: 4),
+                                                Expanded(
+                                              child: Text(
+                                              item['notice'].toString(),
+                                                style: GoogleFonts.sarabun(
+                                                  fontSize: 10,
+                                                    color: Colors.amber[800],
+                                                      fontWeight: FontWeight.w600),
+                                                        maxLines: 2,
+                                                          overflow: TextOverflow.ellipsis,
                                                       ),
-                                                    ]),
-                                                  ),
-                                              ] else if (item['shouldCountdown'] == true) ...[
-                                        Text(
-                                          hasNext
-                                              ? formatCountdown(item['nextDiff'] as int)
-                                              : 'หมดรอบแล้ว',
+                                                    ),
+                                                  ]),
+                                                ),
+                                            ] else if (item['shouldCountdown'] == true) ...[
+                                      Text(
+                                        hasNext
+                                            ? formatCountdown(item['nextDiff'] as int)
+                                            : 'หมดรอบแล้ว',
+                                        style: GoogleFonts.sarabun(
+                                            fontSize: 11,
+                                            fontWeight: FontWeight.w600,
+                                            color: isSoon
+                                                ? const Color(0xFFf4845f)
+                                                : hasNext
+                                                    ? const Color(0xFF2d6a4f)
+                                                    : Colors.grey),
+                                      ),
+                                      if (item['nextTime'] != null)
+                                        Text('${item['nextTime']} น.',
+                                            style: GoogleFonts.sarabun(
+                                                fontSize: 10, color: Colors.grey[600])),
+                                    ] else ...[
+                                      Text('รอบ:',
                                           style: GoogleFonts.sarabun(
-                                              fontSize: 11,
+                                              fontSize: 9, color: Colors.grey[500])),
+                                      Text(slots.join(' / '),
+                                          style: GoogleFonts.sarabun(
+                                              fontSize: 10,
                                               fontWeight: FontWeight.w600,
-                                              color: isSoon
-                                                  ? const Color(0xFFf4845f)
-                                                  : hasNext
-                                                      ? const Color(0xFF2d6a4f)
-                                                      : Colors.grey),
-                                        ),
-                                        if (item['nextTime'] != null)
-                                          Text('${item['nextTime']} น.',
-                                              style: GoogleFonts.sarabun(
-                                                  fontSize: 10, color: Colors.grey[600])),
-                                      ] else ...[
-                                        Text('รอบ:',
-                                            style: GoogleFonts.sarabun(
-                                                fontSize: 9, color: Colors.grey[500])),
-                                        Text(slots.join(' / '),
-                                            style: GoogleFonts.sarabun(
-                                                fontSize: 10,
-                                                fontWeight: FontWeight.w600,
-                                                color: const Color(0xFF2d6a4f)),
-                                            maxLines: 2,
-                                            overflow: TextOverflow.ellipsis),
-                                      ],
+                                              color: const Color(0xFF2d6a4f)),
+                                          maxLines: 2,
+                                          overflow: TextOverflow.ellipsis),
+                                    ],
                                           ]),
                                         );
                                       },
