@@ -240,7 +240,7 @@ const List<Map<String, dynamic>> locations = [
     'emoji': '🦘',
     'hasToilet': true,
     'hasParking': true,
-    'waypoint': 58,
+    'waypoint': 52,
     'lat': 16.841918,
     'lng': 102.895329
   },
@@ -274,7 +274,7 @@ const List<Map<String, dynamic>> feedingScheduleDefault = [
   {'name': 'เพนกวิน',           'emoji': '🐧', 'type': 'show',    'weekday': ['11:00', '14:30'], 'weekend': ['11:00', '14:30']},
   {'name': 'แมวน้ำ',            'emoji': '🦭', 'type': 'show',    'weekday': ['11:00', '13:30'], 'weekend': ['11:00', '13:30', '15:00']},
   {'name': 'พาเหรดคาปิบาร่า',   'emoji': '🐾', 'type': 'show',    'weekday': ['10:00', '13:30'], 'weekend': ['10:00', '13:30']},
-  {'name': 'ฮิปโปโปเตมัสแคระ',  'emoji': '🦛', 'type': 'show',    'weekday': ['10:00', '12:00', '13:00', '15:00'], 'weekend': ['10:00', '12:00', '13:00', '15:00']},
+  {'name': 'ฮิปโปแคระ',  'emoji': '🦛', 'type': 'show',    'weekday': ['10:00', '12:00', '13:00', '15:00'], 'weekend': ['10:00', '12:00', '13:00', '15:00']},
 ];
 
 const List<Map<String, String>> funFacts = [
@@ -304,154 +304,237 @@ const List<String> visitingTips = [
 ];
 
 const List<Offset> waypoints = [
-  Offset(3631, 812),  // 1
-  Offset(3519, 1057), // 2
-  Offset(3097, 836),  // 3
-  Offset(2975, 451),  // 4
-  Offset(2767, 735),  // 5
-  Offset(2573, 788),  // 6
-  Offset(2371, 889),  // 7
-  Offset(2275, 631),  // 8
-  Offset(2119, 908),  // 9
-  Offset(1925, 849),  // 10
-  Offset(1760, 754),  // 11
-  Offset(1398, 538),  // 12
-  Offset(1053, 709),  // 13
-  Offset(829,  831),  // 14
-  Offset(587,  911),  // 15
-  Offset(409,  1028), // 16
-  Offset(439,  1248), // 17
-  Offset(266,  1339), // 18
-  Offset(534,  1471), // 19
-  Offset(409,  1671), // 20
-  Offset(245,  1886), // 21
-  Offset(250,  2080), // 22
-  Offset(391,  2139), // 23
-  Offset(553,  2091), // 24
-  Offset(649,  1814), // 25
-  Offset(731,  1565), // 26
-  Offset(912,  1357), // 27
-  Offset(1034, 1357), // 28
-  Offset(1194, 1421), // 29
-  Offset(1140, 1700), // 30
-  Offset(1284, 1495), // 31
-  Offset(1441, 1562), // 32
-  Offset(1669, 1628), // 33
-  Offset(2193, 1713), // 34
-  Offset(2770, 1647), // 35
+  Offset(3631, 719),  // 1  Welcome
+  Offset(3519, 1059), // 2
+  Offset(3099, 834),  // 3
+  Offset(2988, 448),  // 4  โชว์แมวน้ำ
+  Offset(2772, 743),  // 5
+  Offset(2589, 788),  // 6
+  Offset(2368, 876),  // 7
+  Offset(2275, 610),  // 8  จุดจอดหมี
+  Offset(2108, 897),  // 9
+  Offset(1927, 849),  // 10
+  Offset(1760, 748),  // 11
+  Offset(1390, 528),  // 12 กรงนก
+  Offset(1053, 719),  // 13
+  Offset(840,  834),  // 14
+  Offset(574,  908),  // 15
+  Offset(407,  1041), // 16
+  Offset(449,  1232), // 17
+  Offset(279,  1317), // 18 จุดจอดลิง
+  Offset(526,  1474), // 19
+  Offset(420,  1687), // 20
+  Offset(247,  1889), // 21
+  Offset(261,  2067), // 22
+  Offset(380,  2147), // 23
+  Offset(550,  2093), // 24
+  Offset(667,  1804), // 25
+  Offset(755,  1533), // 26
+  Offset(914,  1362), // 27
+  Offset(1031, 1360), // 28
+  Offset(1183, 1421), // 29
+  Offset(1148, 1713), // 30 จุดจอดคาปิ
+  Offset(1289, 1487), // 31
+  Offset(1414, 1551), // 32
+  Offset(1661, 1634), // 33
+  Offset(2188, 1719), // 34
+  Offset(2757, 1663), // 35 จุดจอดฮิปโปเล็ก
   Offset(2424, 1921), // 36
-  Offset(2305, 2064), // 37
-  Offset(1853, 2048), // 38
-  Offset(1975, 2242), // 39
-  Offset(1869, 2327), // 40
-  Offset(1948,2423), // 41
-  Offset(2108,2444), // 42
+  Offset(2294, 2078), // 37
+  Offset(1853, 2043), // 38 จุดจอดเสือ
+  Offset(1983, 2205), // 39
+  Offset(1879, 2327), // 40
+  Offset(1948, 2423), // 41
+  Offset(2108, 2444), // 42
   Offset(2291, 2460), // 43
-  Offset(2464, 2766), // 44
+  Offset(2464, 2766), // 44 ฮิปโปใหญ่+เพนกวิน ← เหลือแค่อันเดียว
   Offset(2448, 2503), // 45
-  Offset(2464, 2766), // 44
   Offset(2608, 2508), // 46
   Offset(2770, 2490), // 47
   Offset(2767, 2335), // 48
   Offset(2889, 2176), // 49
   Offset(3153, 2234), // 50
   Offset(3357, 2274), // 51
-  Offset(3432, 2024), // 52
+  Offset(3426, 2030), // 52
   Offset(3615, 2272), // 53
   Offset(3822, 2248), // 54
-  Offset(4152, 2091), // 55
+  Offset(4152, 2091), // 55 กรงแร้ง
   Offset(4423, 2003), // 56
-  Offset(4678, 2000), // 57
-  Offset(4421, 1660), // 58
-  Offset(4609, 1333), // 59
+  Offset(4678, 2000), // 57 จุดจอดเลียงผา
+  Offset(4421, 1660), // 58 จิงโจ้แดง
+  Offset(4609, 1333), // 59 จุดจอดกวาง
+
+  //Hidden node for graph (ไม่ใช่จุดที่คนเดินถึง แต่ใช้เชื่อมทางลัด)
+  Offset(2920,700),//60
+  Offset(1220,1400),  //61 ระหว่าง 29-31
+  Offset(2310,1820),  //62 ระหว่าง 34-36
+  Offset(2380,2410),  //63 ระหว่าง 43-45
+  Offset(430,1350),   //64 ระหว่าง 17-19
+  Offset(4520,1800),  //65
+// deer split
+  Offset(4510,1500), //66
+  Offset(3846, 1246),//67
+  //deer spit before welcome
+  Offset(4224,1482)//68
 ];
+// ─────────────────────────────────────────────
+// ONE WAY GRAPH (ห้ามย้อน)
+// ใส่เฉพาะทางที่ "รถวิ่งไปได้"
+// ─────────────────────────────────────────────
 
-const List<List<int>> edges = [
-  [1, 2],
-  [2, 3],
-  [3, 4],
-  [3, 5],
-  [5, 6],
-  [6, 7],
-  [7, 8],
-  [7, 9],
-  [9, 10],
-  [10, 11],
-  [11, 12],
-  [12, 13],
-  [13, 14],
-  [14, 15],
-  [15, 16],
-  [16, 17],
-  [17, 18],
-  [17, 19],
-  [19, 20],
-  [20, 21],
-  [21, 22],
-  [22, 23],
-  [23, 24],
-  [24, 25],
-  [25, 26],
-  [26, 27],
-  [27, 28],
-  [28, 29],
-  [29, 30],
-  [29, 31],
-  [31, 32],
-  [32, 33],
-  [33, 34],
-  [34, 35],
-  [34, 36],
-  [35, 36],
-  [36, 37],
-  [37, 38],
-  [37, 39],
-  [39, 40],
-  [40, 41],
-  [41, 42],
-  [42, 43],
-  [43, 44],
-  [43, 45],
-  [44, 46],
-  [45, 46],
-  [46, 47],
-  [47, 48],
-  [47, 49],
-  [49, 50],
-  [50, 51],
-  [51, 52],
-  [52, 53],
-  [53, 54],
-  [54, 55],
+final Map<int, List<int>> graph = {
 
-  // โซนท้าย
-  [55, 56],
-  [56,58],
-  [56, 57],
-  [57, 58],
-  [58, 59],
-  [58,2],
-];
+  // welcome
+  67: [1,2],
+  1: [2],
 
-List<int> findPath(int from, int to) {
-  final graph = <int, List<int>>{};
-  for (final e in edges) {
-    graph.putIfAbsent(e[0], () => []).add(e[1]);
+  2: [3],
+
+  // แยกไปแมวน้ำ
+  3: [60],
+  60: [5,4],
+  4:[5],
+// แมวน้ำ
+  5: [6],
+  6: [7],
+
+  7: [8,9],
+  8: [9],
+
+  9: [10],
+  10: [11],
+  11: [12],
+
+  // กรงนก
+  12: [13],
+
+  13: [14],
+  14: [15],
+  15: [16],
+  16: [17],
+  17: [64],
+  64:[18,19],
+  18:[19],
+  19: [20],
+  20: [21],
+  21: [22],
+  22: [23],
+  23: [24],
+  24: [25],
+  25: [26],
+  26: [27],
+  27: [28],
+  28: [29],
+
+  // แยกคาปิ
+  29: [61],
+  61:[30,31],
+  30:[31],
+  31: [32], // คาปิ
+
+  32: [33],
+  33: [34],
+
+  // แยกฮิปโปเล็ก
+  34: [62],
+  62: [35,36],
+  35: [36],
+  36: [37],
+
+  37: [38,39],
+  38: [39],
+
+  // เสือ
+
+  39: [40],
+  40: [41],
+  41: [42],
+  42: [43],
+
+  // เพนกวิน+ฮิปโปใหญ่
+  43: [63],
+  63: [44,45],
+  44: [45],
+  45: [46],
+  46: [47],
+  47: [48],
+  48: [49],
+  49: [50],
+  50: [51],
+  51: [52,53],
+  52: [53],
+  53: [54],
+
+  // แร้ง
+  54: [55],
+
+  55: [56],
+
+  // เลียงผา
+  56: [65],
+  65: [57,58],
+  57: [58],
+
+  // จิงโจ้แดง
+  58: [68],
+  68: [67,59],
+  59: [67],
+  
+  // กวาง
+};
+
+
+// ─────────────────────────────────────────────
+// BFS หาเส้นทางสั้นสุด
+// ─────────────────────────────────────────────
+
+List<int> findPath(int start, int goal) {
+
+  // ถ้าจุดเดียวกัน
+  if (start == goal) {
+    return [start];
   }
-  final queue = <List<int>>[[from]];
-  final visited = <int>{from};
+
+  final queue = <List<int>>[];
+  final visited = <int>{};
+
+  // เริ่มต้น
+  queue.add([start]);
+  visited.add(start);
+
   while (queue.isNotEmpty) {
+
+    // ดึง path แรกออกมา
     final path = queue.removeAt(0);
-    final node = path.last;
-    if (node == to) return path;
-    for (final neighbor in (graph[node] ?? [])) {
-      if (!visited.contains(neighbor)) {
-        visited.add(neighbor);
-        queue.add([...path, neighbor]);
+
+    // node ปัจจุบัน
+    final current = path.last;
+
+    // ถึงปลายทางแล้ว
+    if (current == goal) {
+      return path;
+    }
+
+    // เดินต่อได้เฉพาะทางข้างหน้า
+    final neighbors = graph[current] ?? [];
+
+    for (final next in neighbors) {
+
+      if (!visited.contains(next)) {
+
+        visited.add(next);
+
+        // เพิ่ม path ใหม่เข้า queue
+        queue.add([
+          ...path,
+          next,
+        ]);
       }
     }
   }
-  return [from, to];
+
+  // ถ้าไปไม่ได้
+  return [];
 }
 
 int timeToMinutes(String t) {
@@ -699,7 +782,7 @@ class _WelcomePageState extends State<WelcomePage> {
           Positioned(
             top: 16, right: 20,
             child: Column(children: [
-              _StatBadge(emoji: '🦁', label: 'สัตว์หายาก', value: '50+'),
+              _StatBadge(emoji: '🦁', label: 'สัตว์ที่จัดแสดงทั้งหมด', value: '118 ชนิด'),
               const SizedBox(height: 8),
               _StatBadge(emoji: '🌿', label: 'พื้นที่สีเขียว', value: '2,986 ไร่'),
               ]),
@@ -1165,7 +1248,7 @@ class _MapPageState extends State<MapPage> with TickerProviderStateMixin {
   late Stream<DateTime> _clockStream;
   late double _distanceMeters;
   late int _estimatedMinutes;
-  late int _waypointCount;
+
   bool _showWeekend = isWeekend();
   String temp = '--', humidity = '--', windSpeed = '--', weatherLabel = 'กำลังโหลด...';
 
@@ -1191,8 +1274,7 @@ class _MapPageState extends State<MapPage> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    _path = findPath(widget.from['waypoint'] as int, widget.to['waypoint'] as int);
-    _waypointCount = _path.length;
+    _path = findPath(widget.from['waypoint'] as int, widget.to['waypoint'] as int);    
 
     // ── คำนวณระยะทางด้วย Haversine จาก lat/lng จริง ──────────────────────────
 final wpLatLng = buildWaypointLatLng();
@@ -1395,7 +1477,7 @@ _estimatedMinutes = (_distanceMeters / 67).round().clamp(1, 9999);
                               const SizedBox(height: 4),
                               _InfoRow(icon: Icons.timer, label: 'เวลา', value: _formatTime(_estimatedMinutes)),
                               const SizedBox(height: 4),
-                              _InfoRow(icon: Icons.place, label: 'จุดผ่าน', value: '$_waypointCount จุด'),
+                              
                             ]),
                           )),
                           const SizedBox(width: 8),
